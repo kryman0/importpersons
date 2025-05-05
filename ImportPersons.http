@@ -1,0 +1,6 @@
+@ImportPersons_HostAddress = http://localhost:5192
+
+#POST {{ImportPersons_HostAddress}}/login/
+#Accept: application/json
+
+###
