@@ -43,7 +43,7 @@ public class RegistrationController : ControllerBase
     private bool ValidateEmail(string email)
     {
         var atSymbol = @"\@";
-        var pattern = @"^\w.*\w.*\@[a-zA-Z]*\.{1}[a-zA-Z]*$";
+        var pattern = @"^\w*\w*\@[a-zA-Z]*\.{1}[a-zA-Z]*$";
 
         return Regex.Count(email, atSymbol) == 1 && Regex.Match(email, pattern).Success; 
     }

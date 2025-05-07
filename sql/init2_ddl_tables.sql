@@ -25,7 +25,7 @@ create table ImportPersons.dbo.Persons (
 	Person_id int identity(1,1) not null primary key,
 	Firstname nvarchar(128) not null,
 	Lastname nvarchar(128) not null,
-	Ssn nvarchar(13) not null,
+	Ssn nvarchar(13) not null unique,
 	Address nvarchar(128) not null,
 	Postcode nvarchar(32) not null,
 	Country nvarchar(64) not null

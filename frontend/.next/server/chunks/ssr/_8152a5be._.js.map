@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/websites/frontend/src/app/%28main%29/layout.tsx"],"sourcesContent":["export default function MainLayout({\n    children,\n    }: Readonly<{children: React.ReactNode}>) {\n    \n    return (\n        <main className=\"row-2 flex-auto\">\n            {children}\n        </main>\n    );\n}\n"],"names":[],"mappings":";;;;;AAAe,SAAS,WAAW,EAC/B,QAAQ,EACgC;IAExC,qBACI,8OAAC;QAAK,WAAU;kBACX;;;;;;AAGb","debugId":null}},
+    {"offset": {"line": 28, "column": 0}, "map": {"version":3,"sources":["file:///home/websites/frontend/src/app/page.tsx"],"sourcesContent":["'use server';\n\nimport Main from '@/app/(main)/layout';\n\nexport default function Home({children}) {\n    return (\n    <div className=\"flex grid grid-cols-1 grid-rows-3\">\n        <Main>{children}</Main>\n    </div>\n    );\n}\n"],"names":[],"mappings":";;;;;;AAEA;;;;;;AAEe,SAAS,KAAK,EAAC,QAAQ,EAAC;IACnC,qBACA,8OAAC;QAAI,WAAU;kBACX,cAAA,8OAAC,iIAAA,CAAA,UAAI;sBAAE;;;;;;;;;;;AAGf;;;IANwB;;AAAA,+OAAA","debugId":null}},
+    {"offset": {"line": 67, "column": 0}, "map": {"version":3,"sources":["file:///home/websites/frontend/.next-internal/server/app/page/actions.js%20%28server%20actions%20loader%29"],"sourcesContent":["export {default as '40913baee455b69650c05c1a0fe5935a49caf2edff'} from 'ACTIONS_MODULE0'\n"],"names":[],"mappings":";AAAA","debugId":null}}]
+}

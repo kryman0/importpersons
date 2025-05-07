@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/websites/frontend/src/app/%28main%29/layout.tsx"],"sourcesContent":["export default function MainLayout({\n    children,\n    }: Readonly<{children: React.ReactNode}>) {\n    \n    return (\n        <main className=\"row-2 flex-auto\">\n            {children}\n        </main>\n    );\n}\n"],"names":[],"mappings":";;;;;AAAe,SAAS,WAAW,EAC/B,QAAQ,EACgC;IAExC,qBACI,8OAAC;QAAK,WAAU;kBACX;;;;;;AAGb","debugId":null}}]
+}

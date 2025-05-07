@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using ImportPersons.Models;
@@ -29,11 +30,16 @@ public class PersonController : ControllerBase
 
     private bool ValidateSSN(string ssn)
     {
-        const string pattern = @"^[1-9]{8}\-[0-9]{4}$";
+        const string pattern = @"^\d{8}-\d{4}$";
         
         var match = Regex.Match(ssn, pattern).Success;
 
         return match;
+    }
+
+    private bool CheckIfSSNAlreadyExists(string ssn)
+    {
+        return _context.Persons.Any(p => p.SSN == ssn);
     }
 
     private bool ValidateList(List<Person> persons)
@@ -60,9 +66,12 @@ public class PersonController : ControllerBase
                 continue;
             }
 
-            if (runTimeProp.Name == nameof(person.SSN) && !ValidateSSN(person.SSN))
+            if (runTimeProp.Name == nameof(person.SSN))
             {
-                return false;
+                if (!ValidateSSN(person.SSN) || CheckIfSSNAlreadyExists(person.SSN))
+                {
+                    return false;
+                }
             }
 
             var propValue = GetPropertyValue(runTimeProp, person);
@@ -100,11 +109,12 @@ public class PersonController : ControllerBase
 
         if (_context.Persons == null || !_context.Persons.Any())
         {
-            return Results.Content(content: "No persons registered! Please import at least one person.", statusCode: StatusCodes.Status204NoContent);
+            return Results.NoContent();
         }
 
         var persons = _context.Persons.Select(p => new Person
         {
+            Id = p.Id,
             FirstName = p.FirstName,
             LastName = p.LastName,
             SSN = string.IsNullOrEmpty(maskSSN) || maskSSN != "true" ? p.SSN : MaskSSN(),
@@ -122,7 +132,7 @@ public class PersonController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IResult ImportPersons([FromHeader(Name = "X-API-KEY")] string header, List<Person> persons)
     {
-        var isApiKeyCorrect = BCrypt.Net.BCrypt.Verify(header, _configuration.GetSection("API-KEY").Value);
+        var isApiKeyCorrect = header == _configuration.GetSection("API-KEY").Value;
         
         if (!isApiKeyCorrect)
         {
@@ -142,6 +152,6 @@ public class PersonController : ControllerBase
         _context.AddRange(persons);
         _context.SaveChanges();
 
-        return Results.Created("/api/persons/import", persons);
+        return Results.Created("/api/persons/import", "Persons created!");
     }
 }

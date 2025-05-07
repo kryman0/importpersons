@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /*border: 1px solid red;*/
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /*--font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);*/
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 10px;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+li {
+  margin: 10px 50px 10px 0;
+  text-align: left;
+}
+
+main {
+  /*border: 1px solid green;*/
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+input {
+  display: inline-block;
+}
+
+input[placeholder] {
+  color: white;
+}
+
+input, button {
+  border: 2px solid blue;
+  padding: 5px 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+table {
+  margin: 10px 0;
+  border-collapse: collapse;
+  /*width: 100%;*/
+}
+
+th, td {
+  display: inline-block;
+  width: 140px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+td {
+  font-size: 14px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: deepskyblue;
+}
+
+.hover {
+  cursor: pointer;
+}
